@@ -1,0 +1,65 @@
+{
+	"name": "Airflow",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "airflow",
+	"workspaceFolder": "/workspace/airflow/dags/${localWorkspaceFolderBasename}",
+	"initializeCommand": "sh .devcontainer/scripts/env_setup.sh ${localWorkspaceFolderBasename}",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": {
+				"remote.autoForwardPorts": false,
+				"files.exclude": {
+					"**/*.pyc": {
+						"when": "$(basename).py"
+					},
+					"**/__pycache__": true
+				},
+				"python.defaultInterpreterPath": "/usr/local/bin/python",
+				"python.languageServer": "Default",
+				"python.testing.pytestEnabled": true,
+				"python.testing.unittestEnabled": false,
+				"terminal.integrated.env.linux": {
+					"PYTHONPATH": "${workspaceFolder}"
+				},
+				"ruff.path": ["ruff"],
+				"[python]": {
+					"editor.formatOnSave": true,
+					"editor.codeActionsOnSave": {
+						"source.fixAll": true,
+						"source.organizeImports": true
+					},
+					"editor.defaultFormatter": "charliermarsh.ruff"
+				}
+			},
+
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"charliermarsh.ruff",
+				"njpwerner.autodocstring",
+				"eamodio.gitlens",
+				"GitLab.gitlab-workflow"
+			]
+		}
+	},
+
+	// Setup airflow and pre-commit hooks
+	"postCreateCommand": "bash .devcontainer/scripts/airflow_setup.sh && pre-commit install",
+
+	// Pause any DAGs on start-up to avoid inadvertent runs
+	"postStartCommand": "airflow dags list -o plain | awk 'FNR > 1 {print $1}' | xargs -i -r sh -c 'airflow dags pause {} || true'",
+
+	// Start the airflow scheduler and webserver
+	"postAttachCommand": {
+		"scheduler": "nohup bash -c 'airflow scheduler &' >/dev/null 2>&1",
+		"webserver": "nohup bash -c 'airflow webserver &' >/dev/null 2>&1"
+	},
+
+	"remoteUser": "vscode",
+	"updateRemoteUserUID": false
+}

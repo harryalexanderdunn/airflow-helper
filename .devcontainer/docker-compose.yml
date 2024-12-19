@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  airflow:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        # Update 'PYTHON_VARIANT' to pick a version of Python: 3, 3.10, 3.9, 3.8, 3.7, 3.6
+        # Append -bullseye or -buster to pin to an OS version.
+        # Use -bullseye variants on local arm64/Apple Silicon.
+        PYTHON_VARIANT: '3.8'
+        AIRFLOW_VERSION: 2.7.3
+        AIRFLOW_PROVIDERS: apache.beam,cncf.kubernetes,dbt.cloud,google,hashicorp,mysql,postgres,sendgrid,ssh
+        LOCAL_UID: ${LOCAL_UID}
+
+    environment:
+      AIRFLOW_HOME: /workspace/airflow
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__WEBSERVER__WORKERS: 2
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      # For backward compatibility, with Airflow <2.3
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CORE__FERNET_KEY: ''
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+      AIRFLOW__DATABASE__LOAD_DEFAULT_CONNECTIONS: 'false'
+      AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session'
+      AIRFLOW__WEBSERVER__INSTANCE_NAME: Dev Container
+      GOOGLE_APPLICATION_CREDENTIALS: /workspace/.config/gcloud/application_default_credentials.json
+      AIRFLOW__SECRETS__BACKEND: airflow.providers.google.cloud.secrets.secret_manager.CloudSecretManagerBackend
+      GOOGLE_CLOUD_PROJECT: <gcp-project>
+
+    volumes:
+      - ..:/workspace/airflow/dags/${WORKSPACE_NAME}:cached
+      - ${GCP_CREDENTIALS_LOCAL:-/dev/null}:/workspace/.config/gcloud/application_default_credentials.json
+
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+    ports:
+      - 8080:8080
+
+  postgres:
+    image: postgres:latest
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_DB: airflow
+      POSTGRES_PASSWORD: airflow
+
+volumes:
+  postgres-data:

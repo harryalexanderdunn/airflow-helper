@@ -93,6 +93,7 @@ just uninstall-libraries
 
 ## Automated testing
 
+- The docs folder contains pre-written automated docs from this repo (written using lazydocs). Docs include code docs, unit test docs and code for data dictionary creation.
 - In `docs/automation/data_dictionary` Edit line 56 to link to production datasets for data dictionary creation
 - In justfile update-unit-test-docs section & update-python-docs add any folders or python scripts that you would like to be documented by lazydocs
 
