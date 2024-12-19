@@ -2,7 +2,7 @@
 
 Nobody wants to spend all their time writing documentation, so lets make some code to do it for you. I have written a script which takes tables from any bigquery dataset (that you have access to) and generates a data dictionary for each table in the dataset within a single md file. If you display this in a centralised site such as Mkdocs you can then split your data dictionaries by dataset and they are all easily searchable through the search bar on Mkdocs. This makes looking at data very powerful as its easy to search for certain key words over many different projects.
 
-Please see my previous [article](../Documentation%20Series/central_docs_methodology.md) for more information on setting up a centralised documentation site.
+Please see my previous [article](https://medium.com/@harryalexdunn/documentation-as-code-method-to-centralise-documentation-across-multiple-repositories-within-89f6485695f9) for more information on setting up a centralised documentation site.
 
 ## How it works
 

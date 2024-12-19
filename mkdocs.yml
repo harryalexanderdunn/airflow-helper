@@ -1,4 +1,4 @@
-site_name: Airflow Helper
+site_name: airflow-helper
 docs_dir: ./docs
 
 nav:
