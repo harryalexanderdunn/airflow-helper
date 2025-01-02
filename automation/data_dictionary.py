@@ -4,6 +4,7 @@ from google.cloud import bigquery
 def bq_to_df(project, dataset, table, columns):
     """
     Extracts table from BigQuery and returns a dataframe of the table
+
     Args:
         project (str): project location of table
         dataset (str): dataset location of table
@@ -22,6 +23,7 @@ def bq_to_df(project, dataset, table, columns):
 def create_md_file_from_string(string, filename):
     """
     creates or opens a file based on a file name and writes/overwrites the data within the file with from the string input
+
     Args:
         string (str): string to be written into the file
         filename (str): name and location of file to be written to
@@ -33,6 +35,7 @@ def create_md_file_from_string(string, filename):
 def extract_information_schema_to_markdown(project, dataset):
     """
     Extract the information schema from BQ and translate to markdown
+    
     Args:
         project (str): project location of table
         dataset (str): dataset location of table

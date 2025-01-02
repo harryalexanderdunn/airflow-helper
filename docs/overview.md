@@ -1,5 +1,7 @@
 # Airflow Helper
 
+[Airflow Repository](https://github.com/harryalexanderdunn/airflow-helper/blob/main/docs/automation/data_dictionary.md){ .md-button .md-button--primary }
+
 This is a starter code template, with helper code. The code here is to help you set up you own repo, not to be used as a repo itself. This code is to help you get started with initialising a local aiflow instance. A local airflow instance is useful for testing and debugging your airflow code. However, it should not be used for production deployments.
 
 If you are using windows you will need to first install WSL2 and get your WSL instance setup.
@@ -7,7 +9,8 @@ If you are using windows you will need to first install WSL2 and get your WSL in
 ## Initial WSL and project setup
 
 1. Make sure you have a working WSL terminal (WSL2).
- * Gitbash installed https://git-scm.com/downloads
+
+    * Gitbash installed https://git-scm.com/downloads
 
 2. Clone the [repository](https://github.com/harryalexanderdunn/airflow-helper.git) **to your WSL terminal**.
 
@@ -18,6 +21,7 @@ To install cargo you can use [rustup](https://rustup.rs/) to install the rust to
 Once cargo is installed (ensure you follow the last command for setup `. "$HOME/.cargo/env"`) you can run `cargo install just`
 
 4. Either run `just project-setup` or `just full-project-setup`. 
+
 If this is your first time on WSL, `full-project-setup` will: 
 
 * Install all the necessary packages for package manager
@@ -35,4 +39,4 @@ If this is your first time on WSL, `full-project-setup` will:
 * Install project specific python package
 * Create .env file
 
-**You are now ready to spin up an airflow instance** 🚀 see [docs/airflow_setup](docs/airflow_setup.md) for more details
+**You are now ready to spin up an airflow instance** 🚀 see [airflow_setup](airflow_setup.md) for more details

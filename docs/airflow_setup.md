@@ -6,7 +6,7 @@ I have found the docker solution to be more useful, mostly because I have paired
 
 I have also written an article on the topic [here](https://medium.com/@harryalexdunn/deploying-airflow-locally-on-wsl2-with-docker-and-just-60f1bf95c8bd)
 
-## Running airflow with a Development Container
+## **Running airflow with a Development Container**
 
 The project contains a configuration files for Visual Studio Code Development Containers in the `.devcontainer/` directory. To run the project with this locally, follow the below steps:
 
@@ -28,7 +28,7 @@ Common changes you may wish to make:
 
 After making any of the above changes you will need to rebuid the container by running "Rebuild Container" command via Command Palette (usually accessible with Ctrl+Shift+P).
 
-## Running Airflow with DOcker
+## **Running Airflow with Docker**
 
 To run airflow using Docker, instead Run `local-airflow` to create a local airflow instance for local testing.
 

@@ -5,6 +5,7 @@ edit_uri: edit/main/docs/
 nav:
   - Home: 'overview.md'
   - Airflow Setup: 'airflow_setup.md'
+  - Useful Code: 'the_dag_code.md'
   - Automation:
       - Data Dictionary Creation: 'automation/data_dictionary.md'
 
