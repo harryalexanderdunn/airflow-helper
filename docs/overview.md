@@ -1,6 +1,6 @@
 # Airflow Helper
 
-[Airflow Repository](https://github.com/harryalexanderdunn/airflow-helper/blob/main/docs/automation/data_dictionary.md){ .md-button .md-button--primary }
+[Airflow Repository](https://github.com/harryalexanderdunn/airflow-helper/tree/main){ .md-button .md-button--primary }
 
 This is a starter code template, with helper code. The code here is to help you set up you own repo, not to be used as a repo itself. This code is to help you get started with initialising a local aiflow instance. A local airflow instance is useful for testing and debugging your airflow code. However, it should not be used for production deployments.
 
