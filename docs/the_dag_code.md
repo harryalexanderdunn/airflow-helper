@@ -2,8 +2,8 @@
 
 ## Settings Configuration
 
-::: settings.__init__
+::: config.settings
 
 ## Tasks
 
-::: example_dag.py
+::: example_dag

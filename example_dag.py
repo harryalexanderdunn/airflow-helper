@@ -17,7 +17,7 @@ from airflow.providers.google.cloud.operators.dataform import (
 
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
-import settings # noqa: I001
+from config import settings # noqa: I001
 
 default_args = {
     "owner": "Example Owner",
